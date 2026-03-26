@@ -1619,5 +1619,90 @@
     })();
   </script>
 
+  <!-- ─── INLINE EDIT MODE ──────────────────────────────── -->
+  <script>
+  (function () {
+    // On load: apply any saved edits from localStorage
+    document.querySelectorAll('[data-edit-id]').forEach(el => {
+      const saved = localStorage.getItem('bkh_' + el.dataset.editId);
+      if (saved !== null) el.innerHTML = saved;
+    });
+
+    /* --- UI --- */
+    const fab = document.createElement('button');
+    fab.id = 'edit-fab';
+    fab.title = 'מצב עריכה';
+    fab.innerHTML = '✏️';
+    Object.assign(fab.style, {
+      position:'fixed', bottom:'1.4rem', left:'1.4rem', zIndex:'9999',
+      background:'#A06878', color:'white', border:'none', borderRadius:'50%',
+      width:'46px', height:'46px', fontSize:'1.15rem', cursor:'pointer',
+      boxShadow:'0 4px 18px rgba(0,0,0,0.22)', transition:'transform .2s',
+      display:'flex', alignItems:'center', justifyContent:'center'
+    });
+
+    const bar = document.createElement('div');
+    bar.id = 'edit-bar';
+    Object.assign(bar.style, {
+      position:'fixed', bottom:'1.4rem', left:'4.4rem', zIndex:'9999',
+      background:'#2A1204', color:'white', borderRadius:'8px',
+      padding:'0.5rem 1rem', display:'none', alignItems:'center', gap:'0.7rem',
+      boxShadow:'0 4px 18px rgba(0,0,0,0.28)', fontFamily:'inherit', fontSize:'0.88rem',
+      direction:'rtl'
+    });
+    bar.innerHTML = `
+      <span style="opacity:.8">מצב עריכה פעיל — לחץ על כל טקסט לעריכה</span>
+      <button id="edit-dl"    style="background:#A06878;color:#fff;border:none;border-radius:4px;padding:.3rem .8rem;cursor:pointer;font-family:inherit;white-space:nowrap">⬇ הורד לפרסום</button>
+      <button id="edit-clear" style="background:transparent;color:#bbb;border:1px solid #555;border-radius:4px;padding:.3rem .6rem;cursor:pointer;font-family:inherit;font-size:.8rem;white-space:nowrap">נקה שינויים</button>
+    `;
+    document.body.appendChild(fab);
+    document.body.appendChild(bar);
+
+    let active = false;
+
+    function setEditMode(on) {
+      active = on;
+      fab.innerHTML = on ? '✕' : '✏️';
+      bar.style.display = on ? 'flex' : 'none';
+      document.querySelectorAll('[data-edit-id]').forEach(el => {
+        el.contentEditable = on ? 'true' : 'false';
+        el.style.outline      = on ? '2px dashed rgba(160,104,120,0.55)' : '';
+        el.style.minHeight    = on ? '1em' : '';
+        el.style.borderRadius = on ? '2px' : '';
+        el.style.cursor       = on ? 'text' : '';
+      });
+    }
+
+    fab.addEventListener('click', () => setEditMode(!active));
+
+    // Auto-save while typing
+    document.addEventListener('input', e => {
+      if (e.target.dataset.editId)
+        localStorage.setItem('bkh_' + e.target.dataset.editId, e.target.innerHTML);
+    });
+
+    // Download updated index.html
+    document.getElementById('edit-dl').addEventListener('click', () => {
+      setEditMode(false);
+      setTimeout(() => {
+        const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+        const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+        const a = Object.assign(document.createElement('a'),
+          { href: URL.createObjectURL(blob), download: 'index.html' });
+        document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      }, 80);
+    });
+
+    // Clear all saved edits
+    document.getElementById('edit-clear').addEventListener('click', () => {
+      if (confirm('למחוק את כל השינויים השמורים ולחזור למקור?')) {
+        document.querySelectorAll('[data-edit-id]').forEach(el =>
+          localStorage.removeItem('bkh_' + el.dataset.editId));
+        location.reload();
+      }
+    });
+  })();
+  </script>
+
 </body>
 </html>
