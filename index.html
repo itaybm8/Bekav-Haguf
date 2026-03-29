@@ -10,6 +10,74 @@
   <link href="https://fonts.googleapis.com/css2?family=Secular+One&family=Assistant:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
   <style>
+    /* ─── INTRO SPLASH ───────────────────────────────── */
+    #intro-splash {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      background: #0a0705;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 1.2s ease;
+    }
+    #intro-splash.fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+    #intro-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+    }
+    #intro-ui {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.2rem;
+    }
+    #intro-enter {
+      background: rgba(255,255,255,0.12);
+      border: 1.5px solid rgba(255,255,255,0.55);
+      color: #fff;
+      font-family: 'Assistant', sans-serif;
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      padding: 0.75rem 2.8rem;
+      border-radius: 2px;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: background 0.3s, transform 0.3s;
+      opacity: 0;
+      animation: fadeInBtn 1s ease 1.5s forwards;
+    }
+    #intro-enter:hover {
+      background: rgba(255,255,255,0.24);
+      transform: translateY(-2px);
+    }
+    #intro-sound {
+      background: transparent;
+      border: none;
+      color: rgba(255,255,255,0.55);
+      font-size: 1.3rem;
+      cursor: pointer;
+      transition: color 0.2s;
+      opacity: 0;
+      animation: fadeInBtn 1s ease 2s forwards;
+      padding: 0.3rem;
+    }
+    #intro-sound:hover { color: rgba(255,255,255,0.9); }
+    @keyframes fadeInBtn { to { opacity: 1; } }
+  </style>
+
+  <style>
     /* ─── CSS VARIABLES ─────────────────────────────── */
     :root {
       --bg:         #F5EFEA;
@@ -795,6 +863,51 @@
   </style>
 </head>
 <body>
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- INTRO VIDEO SPLASH                             -->
+  <!-- ══════════════════════════════════════════════ -->
+  <div id="intro-splash">
+    <video id="intro-video" autoplay muted playsinline preload="auto">
+      <source src="video/intro.mp4" type="video/mp4" />
+    </video>
+    <div id="intro-ui">
+      <button id="intro-enter">כנסו לסטודיו</button>
+      <button id="intro-sound" title="הפעל/כבה שמע">🔇</button>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var splash  = document.getElementById('intro-splash');
+      var video   = document.getElementById('intro-video');
+      var enterBtn = document.getElementById('intro-enter');
+      var soundBtn = document.getElementById('intro-sound');
+      var muted = true;
+
+      function dismiss() {
+        splash.classList.add('fade-out');
+        video.pause();
+        setTimeout(function () { splash.remove(); }, 1300);
+      }
+
+      // Auto-dismiss when video ends
+      video.addEventListener('ended', dismiss);
+
+      // Enter button
+      enterBtn.addEventListener('click', dismiss);
+
+      // Sound toggle
+      soundBtn.addEventListener('click', function () {
+        muted = !muted;
+        video.muted = muted;
+        soundBtn.textContent = muted ? '🔇' : '🔊';
+      });
+
+      // Skip on any key
+      document.addEventListener('keydown', dismiss, { once: true });
+    })();
+  </script>
 
   <!-- ══════════════════════════════════════════════ -->
   <!-- SPINE SCROLL ELEMENT                           -->
