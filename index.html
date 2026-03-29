@@ -62,18 +62,6 @@
       background: rgba(255,255,255,0.24);
       transform: translateY(-2px);
     }
-    #intro-sound {
-      background: transparent;
-      border: none;
-      color: rgba(255,255,255,0.55);
-      font-size: 1.3rem;
-      cursor: pointer;
-      transition: color 0.2s;
-      opacity: 0;
-      animation: fadeInBtn 1s ease 2s forwards;
-      padding: 0.3rem;
-    }
-    #intro-sound:hover { color: rgba(255,255,255,0.9); }
     @keyframes fadeInBtn { to { opacity: 1; } }
   </style>
 
@@ -872,8 +860,7 @@
       <source src="video/intro.mp4" type="video/mp4" />
     </video>
     <div id="intro-ui">
-      <button id="intro-enter">כנסו לסטודיו</button>
-      <button id="intro-sound" title="הפעל/כבה שמע">🔇</button>
+      <button id="intro-enter">רוצה להכנס לסטודיו?</button>
     </div>
   </div>
 
@@ -882,29 +869,14 @@
       var splash  = document.getElementById('intro-splash');
       var video   = document.getElementById('intro-video');
       var enterBtn = document.getElementById('intro-enter');
-      var soundBtn = document.getElementById('intro-sound');
-      var muted = true;
-
       function dismiss() {
         splash.classList.add('fade-out');
         video.pause();
         setTimeout(function () { splash.remove(); }, 1300);
       }
 
-      // Auto-dismiss when video ends
       video.addEventListener('ended', dismiss);
-
-      // Enter button
       enterBtn.addEventListener('click', dismiss);
-
-      // Sound toggle
-      soundBtn.addEventListener('click', function () {
-        muted = !muted;
-        video.muted = muted;
-        soundBtn.textContent = muted ? '🔇' : '🔊';
-      });
-
-      // Skip on any key
       document.addEventListener('keydown', dismiss, { once: true });
     })();
   </script>
