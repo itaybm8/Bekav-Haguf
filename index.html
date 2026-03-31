@@ -91,7 +91,7 @@
       font-family: 'Secular One', sans-serif;
       font-size: clamp(3rem, 8vw, 6.5rem);
       font-weight: 400;
-      color: var(--bg);
+      color: var(--text-dark);
       margin: 0;
       display: flex;
       align-items: baseline;
@@ -114,7 +114,7 @@
     .intro-subtitle {
       font-family: 'Assistant', sans-serif;
       font-size: clamp(0.9rem, 2.2vw, 1.15rem);
-      color: rgba(245, 239, 234, 0.82);
+      color: var(--text-mid);
       font-weight: 300;
       letter-spacing: 0.04em;
       opacity: 0;
@@ -425,12 +425,20 @@
       font-size: clamp(0.95rem, 1.6vw, 1.05rem);
     }
 
+    .what-is-tagline {
+      font-family: 'Secular One', sans-serif;
+      font-size: clamp(1.15rem, 2.2vw, 1.5rem);
+      color: var(--wood-mid);
+      margin-bottom: 0.3rem;
+    }
+
     .what-is-closing {
       font-family: 'Secular One', sans-serif;
-      font-size: clamp(1.3rem, 2.4vw, 1.9rem);
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
       line-height: 1.55;
-      color: var(--text-dark);
-      margin-top: 1.4rem;
+      color: var(--text-mid);
+      margin-top: 1rem;
+      font-style: italic;
     }
 
     /* ─── FOR WHOM ──────────────────────────────────── */
@@ -1022,14 +1030,14 @@
       </h1>
 
       <!-- Subtitle -->
-      <p class="intro-subtitle">סטודיו לתנועה ועבודת גוף בשיטת Gyrotonic®</p>
+      <p class="intro-subtitle">בית לתנועה, נשימה וריפוי בשיטות הג׳יירוטוניק והג׳יירוקינזיס</p>
 
       <!-- Invisible spacers — match hero-content's gyrotonic logo + btn-cta
            so the vertical center of this group = center of hero-content -->
       <img src="gyrotonic-logo.png" aria-hidden="true" focusable="false"
            style="width:clamp(100px,14vw,160px);visibility:hidden;pointer-events:none;" />
       <span aria-hidden="true"
-            style="display:inline-block;padding:0.75em 2.2em;border:1.5px solid transparent;font-size:clamp(1rem,2vw,1.15rem);visibility:hidden;pointer-events:none;">רוצה לנסות?</span>
+            style="display:inline-block;padding:0.75em 2.2em;border:1.5px solid transparent;font-size:clamp(1rem,2vw,1.15rem);visibility:hidden;pointer-events:none;">רוצה להרגיש בעצמך?</span>
 
     </div>
 
@@ -1103,7 +1111,7 @@
 
       <h1 class="hero-title" data-edit-id="hero-h1-1">בקו הגוף</h1>
 
-      <p class="hero-subtitle" data-edit-id="hero-p-1">סטודיו לתנועה ועבודת גוף בשיטת <bdi dir="ltr">Gyrotonic®</bdi></p>
+      <p class="hero-subtitle" data-edit-id="hero-p-1">בית לתנועה, נשימה וריפוי בשיטות הג׳יירוטוניק והג׳יירוקינזיס</p>
 
       <img
         src="gyrotonic-logo.png"
@@ -1112,7 +1120,7 @@
         onerror="this.style.display='none'"
       />
 
-      <a href="#contact" class="btn-cta" data-edit-id="btn-cta">רוצה לנסות?</a>
+      <a href="#contact" class="btn-cta" data-edit-id="btn-cta">רוצה להרגיש בעצמך?</a>
     </div>
   </section>
 
@@ -1127,32 +1135,22 @@
         <div class="what-is-text">
           <h2 class="reveal" data-edit-id="what-is-h2-1">מה זה <bdi dir="ltr">Gyrotonic®</bdi>?</h2>
 
+          <p class="reveal reveal-delay-1 what-is-tagline" data-edit-id="what-is-tagline">יותר תנועה. פחות כאב.</p>
+
           <p class="reveal reveal-delay-1" data-edit-id="what-is-p-1">
-            <bdi dir="ltr">Gyrotonic®</bdi> היא שיטת תנועה ייחודית שעובדת על הגוף כולו דרך תנועה זורמת, מעגלית וספירלית.
+            <bdi dir="ltr">Gyrotonic®</bdi> היא שיטת תנועה עדינה ועמוקה, בה הגוף עובד כיחידה אחת, בתנועה זורמת מעגלית ורציפה תוך תשומת לב לנשימה. התרגול מאפשר לגוף לנוע בטבעיות וחופשיות.
           </p>
 
           <p class="reveal reveal-delay-2" data-edit-id="what-is-p-2">
-            השיטה מבוססת על רצפים של תנועה שמחברים בין כוח, גמישות, נשימה וקואורדינציה.
+            העבודה נעשית על מכשיר ייעודי שמלווה ותומך בגוף, ומאפשר לנוע בדיוק ובביטחון, להגדיל טווחי תנועה, לחזק את השרירים וליצור תחושת אורך, קלילות וזרימה.
           </p>
 
           <p class="reveal reveal-delay-3" data-edit-id="what-is-p-3">
-            התרגול נעשה על מכשיר ייעודי לשיטה, שמאפשר לגוף לנוע בחופשיות ובדיוק, להגדיל טווחי תנועה, לחזק את השרירים וליצור תחושת אורך, זרימה ומרחב בגוף.
+            השיטה הומצאה על ידי ג׳וליו הורבך שלקח השראה מהיוגה, הטאי-צ׳י, השחייה והמחול. השיטה רואה בעמוד השדרה ציר מרכזי שמחבר בין תנועה, נשימה וכוח בגוף האדם ומאפשרת ריפוי.
           </p>
 
-          <p class="reveal reveal-delay-3" data-edit-id="what-is-p-4">
-            השיטה משלבת עקרונות מיוגה, טאי-צ׳י, שחייה, מחול ואוסתאופתיה לכדי שפת תנועה הוליסטית, המתמקדת בעמוד השדרה כציר מרכזי לעבודה עם הגוף כבסיס לחיוניות, גמישות ותחושה כללית טובה יותר.
-          </p>
-
-          <p class="reveal reveal-delay-3" data-edit-id="what-is-p-5">
-            <bdi dir="ltr">Gyrotonic®</bdi> היא לא רק דרך לעבוד על הגוף, אלא דרך להחזיר לו תנועה חכמה, טבעית ועמוקה.
-          </p>
-
-          <p class="reveal reveal-delay-3" data-edit-id="what-is-p-6">
-            העבודה בשיעורים היא 1:1 — נסתכל על הגוף שלך ונזוז בקצב שלך.
-          </p>
-
-          <p class="reveal reveal-delay-4 what-is-closing" data-edit-id="what-is-p-7">
-            יוצאים עם יותר תנועה.<br />פחות כאב.<br />גוף קל, ארוך ונושם יותר.
+          <p class="reveal reveal-delay-4 what-is-closing" data-edit-id="what-is-p-4">
+            תנועה, אימון ומה שמעבר.
           </p>
         </div>
 
@@ -1173,7 +1171,7 @@
 
       <!-- Content (RIGHT in RTL) -->
       <div class="for-whom-content">
-        <h2 class="reveal" data-edit-id="for-whom-h2-1">למי האימונים מתאימים?</h2>
+        <h2 class="reveal" data-edit-id="for-whom-h2-1">למי זה מתאים?</h2>
 
         <div class="cards-grid">
 
@@ -1187,8 +1185,8 @@
               <circle cx="30" cy="28" r="4" stroke="var(--wood-warm)" stroke-width="1.2"/>
             </svg>
           </div>
-          <h3 data-edit-id="for-whom-h3-1">נשים בהריון ואחרי לידה</h3>
-          <p data-edit-id="for-whom-p-1">חיזוק עדין ומדויק של מרכז הגוף ורצפת האגן, מתוך הקשבה, תמיכה ועבודה בקצב שמתאים לך.</p>
+          <h3 data-edit-id="for-whom-h3-1">נשים בהריון, אחרי לידה ובגיל המעבר</h3>
+          <p data-edit-id="for-whom-p-1">חיזוק ושיקום עדין ועמוק, בהתאמה לשינויים שהגוף עובר.</p>
         </div>
 
         <!-- Card 2: כאבים אורתופדיים -->
@@ -1202,8 +1200,8 @@
               <rect x="14" y="29" width="14" height="5" rx="2" stroke="var(--wood-warm)" stroke-width="1.2"/>
             </svg>
           </div>
-          <h3 data-edit-id="for-whom-h3-2">כאבים אורתופדיים שונים</h3>
-          <p data-edit-id="for-whom-p-2">כאבי גב, צוואר, כתפיים, אגן, ברכיים או קרסוליים — עבודה שמביטה על הגוף כולו, מבינה את דפוסי הפיצוי, ומסייעת לחזק, לרווח ולהקל.</p>
+          <h3 data-edit-id="for-whom-h3-2">א.נשים עם כאבים, פציעות או בתהליך שיקום</h3>
+          <p data-edit-id="for-whom-p-2">תרגול מותאם אישית שתומך בגוף ועוזר לחזור לתנועה בטוחה.</p>
         </div>
 
         <!-- Card 3: רקדנים וספורטאים -->
@@ -1218,8 +1216,8 @@
               <path d="M21 26 L30 34" stroke="var(--wood-warm)" stroke-width="1.4" stroke-linecap="round"/>
             </svg>
           </div>
-          <h3 data-edit-id="for-whom-h3-3">ספורטאים ורקדנים</h3>
-          <p data-edit-id="for-whom-p-3">לשיפור ביצועים, הגדלת טווחי תנועה, חיזוק היציבה והעמקת הקשר בין כוח, גמישות ודיוק תנועתי.</p>
+          <h3 data-edit-id="for-whom-h3-3">מי שמרגיש עומס בגוף ביומיום או יושב הרבה</h3>
+          <p data-edit-id="for-whom-p-3">שיפור יציבה, פתיחה של אזורים עמוסים והחזרת תנועה חופשית.</p>
         </div>
 
         <!-- Card 4: מבוגרים פעילים -->
@@ -1234,8 +1232,8 @@
               <path d="M13 20 L10 36" stroke="var(--wood-warm)" stroke-width="1" stroke-linecap="round" stroke-dasharray="2 3"/>
             </svg>
           </div>
-          <h3 data-edit-id="for-whom-h3-4">מבוגרים פעילים</h3>
-          <p data-edit-id="for-whom-p-4">לשמירה על חיוניות, תנועתיות ושיווי משקל, ולתמיכה בגוף לאורך השנים.</p>
+          <h3 data-edit-id="for-whom-h3-4">ספורטאים, רקדנים ואנשי תנועה</h3>
+          <p data-edit-id="for-whom-p-4">למי שמחפש להגדיל טווחי תנועה ויכולות הגוף ולמנוע פציעות.</p>
         </div>
 
         <!-- Card 5: כאב כרוני -->
@@ -1257,8 +1255,8 @@
               <circle cx="31" cy="28" r="1.2" fill="var(--wood-warm)" opacity="0.35"/>
             </svg>
           </div>
-          <h3 data-edit-id="for-whom-h3-5">כאבים או מחלות כרוניות</h3>
-          <p data-edit-id="for-whom-p-5">תנועה עדינה ומותאמת, שמכבדת את הגוף ופוגשת אותו כפי שהוא, גם במצבים של כאב מתמשך או מחלות כרוניות.</p>
+          <h3 data-edit-id="for-whom-h3-5">בני ובנות הגיל השלישי</h3>
+          <p data-edit-id="for-whom-p-5">למי שחווה שינויים מבניים ותנועתיים ורוצה לשמר ולחזק את תנועתיות הגוף.</p>
         </div>
 
         <!-- Card 6: ישיבה ממושכת -->
@@ -1279,8 +1277,8 @@
               <rect x="28" y="15" width="8" height="6" rx="1" stroke="var(--wood-warm)" stroke-width="1" opacity="0.6"/>
             </svg>
           </div>
-          <h3 data-edit-id="for-whom-h3-6">ישיבה ממושכת ועבודה מול מסך</h3>
-          <p data-edit-id="for-whom-p-6">כשהגוף נשאר הרבה זמן באותה תנוחה, מצטברים עומס, נוקשות וכאב. התרגול מחזיר תנועה, מרחב ותחושת הקלה.</p>
+          <h3 data-edit-id="for-whom-h3-6">כל שיעור מותאם אישית</h3>
+          <p data-edit-id="for-whom-p-6">תרגול פרטני שמסתכל עליך היום.</p>
         </div>
 
         </div>
@@ -1337,19 +1335,19 @@
           <h2 class="reveal" data-edit-id="gyrokinesis-h2-1">מה זה <bdi dir="ltr">Gyrokinesis®</bdi>?</h2>
 
           <p class="reveal reveal-delay-1" data-edit-id="gyrokinesis-p-1">
-            <bdi dir="ltr">Gyrokinesis®</bdi> היא שיטת תנועה ללא מכשירים, המתבצעת בישיבה על כיסא, על הרצפה ובעמידה.
+            <bdi dir="ltr">Gyrokinesis®</bdi> היא שיטת תנועה ללא מכשירים, המשלבת תנועה זורמת, מעגלית ורציפה יחד עם נשימה. התרגול נעשה בישיבה, על הרצפה ובעמידה, עם דגש על תנועתיות של עמוד השדרה והגוף כולו.
           </p>
 
           <p class="reveal reveal-delay-2" data-edit-id="gyrokinesis-p-2">
-            התרגול מבוסס על תנועות זורמות, מעגליות ורציפות, עם דגש על תנועתיות מלאה של עמוד השדרה ומתוך כך של הגוף כולו.
+            העבודה מחזקת, מאריכה ומשחררת את הגוף, ומשאירה תחושת קלילות, איזון וחיוניות.
           </p>
 
           <p class="reveal reveal-delay-3" data-edit-id="gyrokinesis-p-3">
-            השיטה משלבת תנועה ונשימה, ומאפשרת לחזק, להאריך ולשחרר את הגוף תוך יצירת תחושת זרימה, איזון וחיוניות.
+            השיעור מתקיים בקבוצה קטנה, בקצב משותף, עם תשומת לב אישית לכל משתתפ.ת.
           </p>
 
-          <p class="reveal reveal-delay-3" data-edit-id="gyrokinesis-p-4">
-            השיעור מתקיים בקבוצה, בקצב משותף, עם תשומת לב אישית לכל משתתפת ומשתתף.
+          <p class="reveal reveal-delay-4 what-is-closing" data-edit-id="gyrokinesis-p-4">
+            גוף שנע בחופשיות, ביחד.
           </p>
         </div>
 
@@ -1380,22 +1378,26 @@
 
         <!-- Text (second child → LEFT in RTL) -->
         <div class="about-text">
-          <h2 class="reveal" data-edit-id="about-h2-1">קצת עליי</h2>
+          <h2 class="reveal" data-edit-id="about-h2-1">אני שני — נעים להכיר</h2>
 
           <p class="reveal reveal-delay-1" data-edit-id="about-p-1">
-            אני שני כהני. במשך שנים נעתי בין עולמות שונים ומגוונים — טיפול, הוראת מחול, עבודה בהייטק ועוד. אבל התנועה (והמחול) היו תמיד שם, חלק מרכזי מחיי.
+            במשך שנים נעתי בין עולמות שונים ומגוונים — טיפול, הוראת מחול, עבודה בהייטק ועוד. איפה שהייתי, תמיד הייתי בתנועה (ובמחול), שהם חלק מרכזי מחיי.
           </p>
 
           <p class="reveal reveal-delay-2" data-edit-id="about-p-2">
-            אל <bdi dir="ltr">Gyrotonic®</bdi> הגעתי מתוך פציעה במהלך לימודי מחול בחו״ל — פריצת דיסק שהגבילה אותי מאוד, והרחיקה אותי ממה שאהבתי וחלמתי. המפגש עם השיטה היה בשבילי נקודת מפנה: פתאום פגשתי דרך לעבוד עם הגוף שיש בה גם דיוק, גם זרימה, גם עומק וגם הקלה.
+            אל <bdi dir="ltr">Gyrotonic®</bdi> הגעתי מתוך פציעה במהלך לימודי מחול בחו״ל — פריצת דיסק ששיתקה אותי, והרחיקה אותי ממה שאהבתי וחלמתי. המפגש עם השיטה היה בשבילי נקודת מפנה; פתאום פגשתי דרך לעבוד עם הגוף בדרך שיש בה דיוק, זרימה, עומק ובעיקר הקלה מכאב.
           </p>
 
           <p class="reveal reveal-delay-3" data-edit-id="about-p-3">
-            אחרי כמעט עשור של תרגול בשיטה, למידה והכשרה, הרגשתי שהגיע הזמן לצאת עם זה לעולם בדרך מלאה יותר — לא רק כתרגול ודרך חיים, אלא גם כמורה.
+            אחרי כעשור של תרגול בשיטה, למידה והכשרה, הרגשתי שהגיע הזמן להביא את עצמי לעולם בדרך מלאה יותר — לא רק כתרגול ודרך חיים, אלא גם כמורה.
           </p>
 
           <p class="reveal reveal-delay-3" data-edit-id="about-p-4">
-            כך נולד ״בקו הגוף״ — סטודיו ביתי שבו אני פוגשת אנשים דרך תנועה, הקשבה ורצון אמיתי להיטיב את איכות החיים שלהם.
+            כך נולד ״בקו הגוף״ — סטודיו ביתי שבו אני פוגשת אנשים דרך תנועה, הקשבה ורצון אמיתי להיטיב את איכות החיים.
+          </p>
+
+          <p class="reveal reveal-delay-4" data-edit-id="about-p-5">
+            אני מביאה איתי לכל שיעור את הדרך שעברתי, את העין של מי שבאה מעולם התנועה, ידע וחוכמה של המורים הטובים ביותר ואת ההבנה שתרתי משמע — כל מקרה לגופו. אני מתרגשת מהעבודה האישית בסטודיו, שמזמינה דיוק והקשבה, ונותנת לי את האפשרות לפגוש באמת את המתאמנים והמתאמנות שלי. אשמח להיפגש איתך.
           </p>
         </div>
 
