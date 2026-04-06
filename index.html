@@ -47,83 +47,47 @@
       z-index: 1;
     }
 
-    /* Brand block — mirrors .hero-content exactly */
-    #intro-brand {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: clamp(1rem, 3vw, 1.8rem);
-      max-width: 520px;
-      width: 100%;
-      text-align: center;
+    /* ── INTRO-ACTIVE: hero-content floats above the video ─────── */
+    /* The actual hero DOM elements animate on top of the intro video.
+       When the splash fades and is removed, the same elements are already
+       in their final state — zero visual jump, zero font mismatch.         */
+    body.intro-active .hero-content {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10001;   /* above #intro-splash (10000) */
     }
 
-    /* Spiral logo */
-    .intro-spiral {
-      width:  clamp(60px, 10vw, 90px);
-      height: clamp(60px, 10vw, 90px);
-      animation: introSpiralEntry 1.8s cubic-bezier(0.22, 1, 0.36, 1) 2s both;
+    /* Spiral: entry + draw, then switches to breathe after intro ends */
+    body.intro-active .logo-spiral {
+      animation: spiralEntry 1.8s cubic-bezier(0.22, 1, 0.36, 1) 2s both,
+                 spiralBreathe 7s ease-in-out 4.5s infinite;
     }
-    @keyframes introSpiralEntry {
-      0%   { opacity: 0; transform: rotate(-30deg) scale(0.55); }
-      50%  { opacity: 1; transform: rotate(8deg)   scale(1.08); }
-      75%  { transform: rotate(-4deg) scale(0.97); }
-      100% { transform: rotate(0deg)  scale(1);    }
-    }
-    .intro-spiral path {
-      fill: none;
-      stroke: var(--wood-mid);
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      stroke-dasharray: 334;
+    body.intro-active .logo-spiral path {
       stroke-dashoffset: 334;
-      animation: introDrawSpiral 2.4s linear 2s forwards;
+      animation: introDraw 2.4s linear 2s forwards;
     }
-    @keyframes introDrawSpiral {
-      to { stroke-dashoffset: 0; }
+    @keyframes introDraw { to { stroke-dashoffset: 0; } }
+
+    /* Title fades up after spiral */
+    body.intro-active .hero-title {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.8s ease 3.4s forwards;
     }
 
-    /* Title — per-letter drop, starts after spiral is visible */
-    .intro-title {
-      font-family: 'Secular One', sans-serif;
-      font-size: clamp(3rem, 8vw, 6.5rem);
-      font-weight: 400;
-      color: var(--text-dark);
-      margin: 0;
-      display: flex;
-      align-items: baseline;
-      gap: 0.05em;
-      direction: rtl;
-    }
-    .intro-title .word-gap { width: 0.35em; }
-    .intro-letter {
-      display: inline-block;
+    /* Subtitle fades up after title */
+    body.intro-active .hero-subtitle {
       opacity: 0;
-      transform: translateY(-50px) scale(1.3);
-      animation: letterLand 0.55s cubic-bezier(0.34, 1.56, 0.64, 1)
-                 calc(3.4s + var(--d, 0) * 0.14s) forwards;
-    }
-    @keyframes letterLand {
-      to { opacity: 1; transform: translateY(0) scale(1); }
+      transform: translateY(12px);
+      animation: fadeUp 0.8s ease 4.3s forwards;
     }
 
-    /* Subtitle — fades in after last letter */
-    .intro-subtitle {
-      font-family: 'Heebo', sans-serif;
-      font-size: clamp(0.9rem, 2.2vw, 1.15rem);
-      color: var(--text-mid);
-      font-weight: 300;
-      letter-spacing: 0.04em;
-      opacity: 0;
-      animation: introFadeUp 0.9s ease calc(3.4s + 7 * 0.14s + 0.45s) forwards;
-      margin: 0;
-    }
-    @keyframes introFadeUp {
-      from { opacity: 0; transform: translateY(12px); }
-      to   { opacity: 1; transform: translateY(0); }
+    /* Gyrotonic logo + CTA: invisible during intro, keep space for centering */
+    body.intro-active .gyrotonic-official-logo,
+    body.intro-active .btn-cta {
+      visibility: hidden;
     }
 
     /* Enter button — pinned to bottom */
@@ -989,7 +953,7 @@
     }
   </style>
 </head>
-<body>
+<body class="intro-active">
 
   <!-- ══════════════════════════════════════════════ -->
   <!-- INTRO VIDEO SPLASH                             -->
@@ -1000,49 +964,6 @@
     <video id="intro-video" autoplay muted playsinline preload="auto">
       <source src="video/intro.mp4" type="video/mp4" />
     </video>
-
-    <!-- Centered brand content -->
-    <div id="intro-brand">
-
-      <!-- Spiral logo drawing -->
-      <svg class="intro-spiral" viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path d="
-          M 45 45
-          C 45 38, 52 32, 58 35
-          C 65 38, 66 48, 61 54
-          C 55 61, 43 63, 35 57
-          C 26 50, 24 37, 31 27
-          C 38 17, 55 14, 66 21
-          C 78 29, 80 47, 73 59
-          C 65 72, 47 77, 33 71
-          C 18 64, 12 44, 18 29
-          C 25 12, 45 5, 63 12
-        " />
-      </svg>
-
-      <!-- Title: each letter drops in -->
-      <h1 class="intro-title" aria-label="בקו הגוף">
-        <span class="intro-letter" style="--d:0">ב</span>
-        <span class="intro-letter" style="--d:1">ק</span>
-        <span class="intro-letter" style="--d:2">ו</span>
-        <span class="word-gap"></span>
-        <span class="intro-letter" style="--d:3">ה</span>
-        <span class="intro-letter" style="--d:4">ג</span>
-        <span class="intro-letter" style="--d:5">ו</span>
-        <span class="intro-letter" style="--d:6">ף</span>
-      </h1>
-
-      <!-- Subtitle -->
-      <p class="intro-subtitle">בית לתנועה, נשימה וריפוי בשיטות הג׳יירוטוניק והג׳יירוקינזיס</p>
-
-      <!-- Invisible spacers — match hero-content's gyrotonic logo + btn-cta
-           so the vertical center of this group = center of hero-content -->
-      <img src="gyrotonic-logo.png" aria-hidden="true" focusable="false"
-           style="width:clamp(100px,14vw,160px);visibility:hidden;pointer-events:none;" />
-      <span aria-hidden="true"
-            style="display:inline-block;padding:0.75em 2.2em;border:1.5px solid transparent;font-size:clamp(1rem,2vw,1.15rem);visibility:hidden;pointer-events:none;">רוצה להרגיש בעצמך?</span>
-
-    </div>
 
     <!-- Enter button — bottom of screen -->
     <div id="intro-ui">
@@ -1059,7 +980,10 @@
       function dismiss() {
         splash.classList.add('fade-out');
         video.pause();
-        setTimeout(function () { splash.remove(); }, 1300);
+        setTimeout(function () {
+          splash.remove();
+          document.body.classList.remove('intro-active');
+        }, 1300);
       }
 
       video.addEventListener('ended', dismiss);
