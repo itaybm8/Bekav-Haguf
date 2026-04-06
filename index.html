@@ -51,12 +51,19 @@
     /* The actual hero DOM elements animate on top of the intro video.
        When the splash fades and is removed, the same elements are already
        in their final state — zero visual jump, zero font mismatch.         */
+    /* Prevent scroll during intro — any scroll offset breaks the fixed→flow match */
+    body.intro-active { overflow: hidden; }
+
     body.intro-active .hero-content {
       position: fixed;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       z-index: 10001;   /* above #intro-splash (10000) */
+      /* Match width to exactly what hero-content gets inside the hero section's
+         horizontal padding — prevents text reflow on the position change */
+      width: calc(100vw - 2 * clamp(1.5rem, 5vw, 4rem));
+      max-width: 520px;
     }
 
     /* Spiral: entry + draw, then switches to breathe after intro ends */
@@ -981,9 +988,11 @@
         splash.classList.add('fade-out');
         video.pause();
         setTimeout(function () {
+          // Wait for the full 1.4s opacity fade to complete before switching
+          // positioning — splash is already invisible so the change is unseen
           splash.remove();
           document.body.classList.remove('intro-active');
-        }, 1300);
+        }, 1500);
       }
 
       video.addEventListener('ended', dismiss);
