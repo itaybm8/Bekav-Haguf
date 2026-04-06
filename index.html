@@ -442,6 +442,24 @@
       gap: clamp(0.6rem, 1.2vw, 0.9rem);
     }
 
+    /* Last row: span all 3 grid columns, center the 2 cards with flexbox */
+    .cards-row-end {
+      grid-column: 1 / -1;
+      display: flex;
+      justify-content: center;
+      gap: clamp(0.6rem, 1.2vw, 0.9rem);
+    }
+    /* Match card width to a 1fr column in the 3-col grid */
+    .cards-row-end .card {
+      flex: 0 0 calc(33.333% - 0.6rem);
+    }
+    /* On mobile: dissolve wrapper so cards join the normal single-column flow */
+    @media (max-width: 860px) {
+      .cards-row-end {
+        display: contents;
+      }
+    }
+
     @media (max-width: 860px) {
       .for-whom-layout {
         grid-template-columns: 1fr;
@@ -449,6 +467,9 @@
       .for-whom-image {
         order: -1;
         height: clamp(260px, 45vw, 400px);
+      }
+      .for-whom-image img {
+        object-position: center 30%;  /* show middle of image and above on mobile */
       }
 
       /* Mobile cards: single column, horizontal layout
@@ -1156,6 +1177,9 @@
           <p data-edit-id="for-whom-p-3">שיפור יציבה, פתיחה של אזורים עמוסים והחזרת תנועה חופשית.</p>
         </div>
 
+        <!-- Cards 4–5: last row, centered relative to the 3 above -->
+        <div class="cards-row-end">
+
         <!-- Card 4: מבוגרים פעילים -->
         <div class="card reveal reveal-delay-4">
           <div class="card-icon">
@@ -1194,6 +1218,8 @@
           <h3 data-edit-id="for-whom-h3-5">בני ובנות הגיל השלישי</h3>
           <p data-edit-id="for-whom-p-5">למי שחווה שינויים מבניים ותנועתיים ורוצה לשמר ולחזק את תנועתיות הגוף.</p>
         </div>
+
+        </div><!-- end cards-row-end -->
 
         </div><!-- end cards-grid -->
 
